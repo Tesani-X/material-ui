@@ -212,6 +212,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       onClose={onClose}
       open={open}
       ref={ref}
+      onClick={handleBackdropClick}
       {...other}
     >
       <TransitionComponent
