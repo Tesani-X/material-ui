@@ -174,15 +174,9 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
 
   const mouseDownTarget = React.useRef();
   const handleMouseDown = (event) => {
-    mouseDownTarget.current = event.target;
+    mouseDownTarget.current = event.currentTarget;
   };
   const handleBackdropClick = (event) => {
-    // Ignore the events not coming from the "backdrop"
-    // We don't want to close the dialog when clicking the dialog content.
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
     // Make sure the event starts and ends on the same DOM element.
     if (event.target !== mouseDownTarget.current) {
       return;
@@ -238,7 +232,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-          onMouseUp={handleBackdropClick}
           onMouseDown={handleMouseDown}
           data-mui-test="FakeBackdrop"
         >
