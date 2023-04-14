@@ -174,11 +174,10 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
 
   const mouseDownTarget = React.useRef();
   const handleMouseDown = (event) => {
-    mouseDownTarget.current = event.currentTarget;
+    mouseDownTarget.current = event.target === event.currentTarget;
   };
   const handleBackdropClick = (event) => {
-    // Make sure the event starts and ends on the same DOM element.
-    if (event.target !== mouseDownTarget.current) {
+    if (!mouseDownTarget.current) {
       return;
     }
 
